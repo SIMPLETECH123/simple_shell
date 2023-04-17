@@ -254,4 +254,4 @@ The file should contain one command per line
 In this mode, the shell should not print a prompt and should not read from stdin
 
 Authors: Samuel Philip (psalmu3l)
-         Timilehin
+         Timilehin caleb (simple tech)
