@@ -1,5 +1,5 @@
-#ifndef SHELL_H
-#define SHELL_H
+#ifndef
+#define
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -34,6 +34,7 @@
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
+void execmd(char **argv);
 extern char **environ;
 
 /**
