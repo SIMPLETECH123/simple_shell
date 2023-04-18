@@ -1,10 +1,12 @@
 #include "s_shell.h"
+
 /**
  * main - code to check
  * @argc:number of arguement
  * @argv:array of arguement
  * Return: 0 always.
- */
+ **/
+
 int main(int argc, char **argv)
 {
 	/*printing a prompt*/
