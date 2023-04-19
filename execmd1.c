@@ -1,12 +1,10 @@
-#include "main.h"
 #include "s_shell.h"
-
 /**
  * execmd1 - Using execve to execute the command
  * @argv:arguement
  **/
 
-void execmd(char **argv)
+void execmd1(char **argv)
 {
 	char *command = NULL;
 
