@@ -1,12 +1,10 @@
 #include "s_shell.h"
-
 /**
  * main - code to check
  * @argc:number of arguement
  * @argv:array of arguement
  * Return: 0 always.
  **/
-
 int main(int argc, char **argv)
 {
 	/*printing a prompt*/
@@ -20,14 +18,12 @@ int main(int argc, char **argv)
 
 	/* declaring void variable*/
 	(void)argc;
-
 	while (1)
 	{
 		printf("%s", prompt);
 		/*read and print what user types out*/
 		nchar_read = getline(&prtline, &n, stdin);
-		/* check if the getline function
-		 * failed or reached EOF or user use CTRL + D */
+		/* check if the getline function fail or reached EOF or user use CTRL + D */
 		if (nchar_read == -1)
 		{
 			printf("Exit shell...\n");

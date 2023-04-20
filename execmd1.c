@@ -6,15 +6,16 @@
 
 void execmd1(char **argv)
 {
-	char *command = NULL;
+	char *command = NULL, *act_command = NULL;
 
 	if (argv)
 	{
 		/* get the command */
 		command = argv[0];
-
+		/*generate pathbefore passing it*/
+		act_command = getlocat(command);
 		/* execute the command with execve */
-		if (execve(command, argv, NULL) == -1)
+		if (execve(act_command, argv, NULL) == -1)
 		{
 			perror("Error:");
 		}
