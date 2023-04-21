@@ -1,0 +1,80 @@
+.\" Manpage for Simple Shell.
+.\" Contact Timilehin caleb simpletimi100@gmail.com to correct errors or typos.
+.TH "TIMI & SAMUEL Simple Shell" 1 "22 April 2023" "1.0" "TIMISAM Simple Shell man page"
+
+.SH NAME
+hsh - Timisam Simple Shell
+
+.SH SYNOPSIS
+hsh (does not support arguments)
+
+.SH DESCRIPTION
+Welcome to the TIMISAM Simple Shell project! This program is a simple shell that can be compiled and launched from the command line within any number of Linux versions.
+
+.SH OVERVIEW
+The TIMISAM Simple Shell project is a major team project conducted by Timilehin caleb and Samuel phillip, students at ALX.
+
+.SH RETURN VALUE
+The shell returns the error code given by the last completed command followed by either ctrl-d or exit with no status code.
+
+.SH SYNTAX
+TIMISAM$ <command> <flags or options> <argument 1> <argument 2> ...
+
+$ <command> | ./hsh
+.SS
+
+.SS
+EXAMPLE 1:
+TIMISAM$ /bin/ls
+.SS
+EXAMPLE 2:
+TIMISAM$ ls -l
+.SS
+EXAMPLE 3:
+TIMISAM$ cat textfile
+.SS
+
+
+.SS
+EXAMPLE 4:
+$ echo "ls -l" | ./hsh
+
+.SH BUILTIN COMMANDS
+.SS alias
+- create or list an alias
+
+.SS cd
+- change directory
+
+.SS env
+- list the current environment variable
+
+.SS exit
+- exit from shell
+
+.SS help
+- display help for a builtin command
+
+.SS history
+- display the command history for the current shell session
+
+.SS setenv
+- set and environment variable
+
+.SS unsetenv
+- unset an environment variable
+
+.SH SEE ALSO
+DASH(1)
+
+.SH BUGS
+No known bugs
+
+.SH AUTHOR
+TIMILEHIN CALEB
+    simpletimi100@gmail.com
+        https://github.com/SIMPLETIMI100
+
+	Samuel phillip
+	    sammyp791.sp37@gmail.com
+	        https://github.com/psalmu3l

@@ -1,31 +1,27 @@
 include "error.h"
-
 /**
  * fnotfound - function that construct the error mess
  * for file not found
  * @sev: pointer to the shell environ var
  * Return: the constructed error mess
  **/
-
 char *fnotfound(sev_t *sev)
 {
-char *errmssg = NULL;
+	char *errmssg = NULL;
 
- errmssg = _strcat(sev->arg0, COLON, &sev->mem);
- errmssg = _strcat(errmssg, SPACE, &sev->mem);
- errmssg = _strcat(errmssg, _itoa(sev->cmd_cnt, &sev->mem), &sev->mem);
- errmssg = _strcat(errmssg, COLON, &sev->mem);
- errmssg = _strcat(errmssg, SPACE, &sev->mem);
- errmssg = _strcat(errmssg, sev->input, &sev->mem);
- errmssg = _strcat(errmssg, COLON, &sev->mem);
- errmssg = _strcat(errmssg, SPACE, &sev->mem);
- errmssg = _strcat(errmssg, "not found", &sev->mem);
- errmssg = _strcat(errmssg, "\n", &sev->mem);
- sev->errmssg = errmssg;
-
- return (errmssg);
+	errmssg = _strcat(sev->arg0, COLON, &sev->mem);
+	errmssg = _strcat(errmssg, SPACE, &sev->mem);
+	errmssg = _strcat(errmssg, _itoa(sev->cmd_cnt, &sev->mem), &sev->mem);
+	errmssg = _strcat(errmssg, COLON, &sev->mem);
+	errmssg = _strcat(errmssg, SPACE, &sev->mem);
+	errmssg = _strcat(errmssg, sev->input, &sev->mem);
+	errmssg = _strcat(errmssg, COLON, &sev->mem);
+	errmssg = _strcat(errmssg, SPACE, &sev->mem);
+	errmssg = _strcat(errmssg, "not found", &sev->mem);
+	errmssg = _strcat(errmssg, "\n", &sev->mem);
+	sev->errmssg = errmssg;
+	return (errmssg);
 }
-
 /**
  * illnum - function that constructs the error mess
  * for the illegal exit num.
