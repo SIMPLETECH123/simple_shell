@@ -11,8 +11,9 @@
 
 void sig_hand(int signum)
 {
-  void signum;
-  PS2;
+	void signum;
+
+	PS2;
 }
 
 /**
@@ -23,8 +24,9 @@ void sig_hand(int signum)
 
 void dis_prompt(sev_t sev)
 {
-  if (sev.ia_mode)
-    PS1;
+	if (sev.ia_mode)
+
+		PS1;
 }
 
 /**
@@ -35,46 +37,48 @@ void dis_prompt(sev_t sev)
 
 char *getcom(sev_t *sev)
 {
-  char *buff = NULL, *tmp = NULL;
-  size_t size = 0, len = 0, ws = 0;
-  ssize_t numread = -1;
+	char *buff = NULL, *tmp = NULL;
+	size_t size = 0, len = 0, ws = 0;
+	ssize_t numread = -1;
 
-  if (!sev->cmd_q)
-    {
-      numread = _getline(&buff, &size, STDIN_FILENO, &sev->mem);
-      if (numread == -2 || numread == -1)
+	if (!sev->cmd_q)
 	{
-	  sev->skywalker = 0;
-	  sev->error = sev->olderror;
-	  if (sev->ia_mode)
-	    NEWLINE;
+		numread = _getline(&buff, &size, STDIN_FILENO, &sev->mem);
+		if (numread == -2 || numread == -1)
+		{
+			sev->skywalker = 0;
+			sev->error = sev->olderror;
+
+			if (sev->ia_mode)
+				NEWLINE;
+		}
+
+		if (numread > 0)
+		{
+			len = _strlen(buff);
+			if (buff[len - 1] == '\n')
+				buff[len - 1] = '\0';
+		}
+		process_input(buff, sev);
 	}
-      if (numread > 0)
+	if (sev->cmd_q)
 	{
-	  len = _strlen(buff);
-	  if (buff[len - 1] == '\n')
-	    buff[len - 1] = '\0';
+		tmp = _strdup(sev->cmd_q->value, &sev->mem);
+		ws = _strspn(tmp, DELIM);
+		if (*(tmp + ws))
+			sev->input = tmp + ws;
+		else
+		{
+			sev->input = "";
+		}
+		delete_node_at_index(&sev->cmd_q, 0);
 	}
-      process_input(buff, sev);
-    }
-  if (sev->cmd_q)
-    {
-      tmp = _strdup(sev->cmd_q->value, &sev->mem);
-      ws = _strspn(tmp, DELIM);
-      if (*(tmp + ws))
-	sev->input = tmp + ws;
-      else
-	{
-	  sev->input = "";
-	}
-      delete_node_at_index(&sev->cmd_q, 0);
-    }
-  else
-    sev->input = NULL;
-  add_log(sev);
-  sev->p_input = make_array_str(sev->input, DELIM, sev);
-  var_expan(sev);
-  return (sev->input);
+	else
+		sev->input = NULL;
+	add_log(sev);
+	sev->p_input = make_array_str(sev->input, DELIM, sev);
+	var_expan(sev);
+	return (sev->input);
 }
 
 /**
@@ -91,36 +95,37 @@ char *getcom(sev_t *sev)
 
 char **make_array_str(char *s, const char *delim, sev_t *sev)
 {
-  char *token = NULL;
-  list_t *head = NULL, *walker = NULL;
-  int numn = 0;
-  char **argv = NULL;
+	char *token = NULL;
+	list_t *head = NULL, *walker = NULL;
+	int numn = 0;
+	char **argv = NULL;
 
-  token = _strtok(s, delim);
-  while (token)
-    {
-      numn++;
-      add_node(&head, NULL, token);
-      token = _strtok(NULL, delim);
-    }
-  if (numn)
-    {
-      reverse_list(&head);
-      argv = malloc(sizeof(char *) * (numn + 1));
-      add_node(&sev->mem, NULL, (void *)argv);
-      for (; numn >= 0; numn--)
-	argv[numn] = NULL;
-      walker = head;
-      numn = 0;
-      while (walker)
+	token = _strtok(s, delim);
+	while (token)
 	{
-	  argv[numn] = (char *)walker->value;
-	  walker = walker->next;
-	  numn++;
+		numn++;
+		add_node(&head, NULL, token);
+		token = _strtok(NULL, delim);
 	}
-      free_list(&head, 0);
-    }
-  return (argv);
+	if (numn)
+	{
+		reverse_list(&head);
+		argv = malloc(sizeof(char *) * (numn + 1));
+		add_node(&sev->mem, NULL, (void *)argv);
+
+		for (; numn >= 0; numn--)
+			argv[numn] = NULL;
+		walker = head;
+		numn = 0;
+		while (walker)
+		{
+			argv[numn] = (char *)walker->value;
+			walker = walker->next;
+			numn++;
+		}
+		free_list(&head, 0);
+	}
+	return (argv);
 }
 
 /**
@@ -131,37 +136,38 @@ char **make_array_str(char *s, const char *delim, sev_t *sev)
 
 int actions(sev_t *sev)
 {
-  pid_t pid;
-  char *fullpt = NULL, **evp;
-  int result = 0;
-  int stat;
+	pid_t pid;
+	char *fullpt = NULL, **evp;
+	int result = 0;
+	int stat;
 
-  if (_strlen(sev->input))
-    fullpt = pathfind(sev);
-  if (sev->error)
-    return (0);
-  if (fullpt)
-    {
-      pid = fork();
-      if (pid == -1)
+	if (_strlen(sev->input))
+		fullpt = pathfind(sev);
+	if (sev->error)
+		return (0);
+	if (fullpt)
 	{
-	  sev->error = -1;
-	  sev->errmsg = "Error spawning child process\n";
+		pid = fork();
+		if (pid == -1)
+		{
+			sev->error = -1;
+			sev->errmsg = "Error spawning child process\n";
+		}
+		else if (pid == 0)
+		{
+			evp = make_evp_array(sev);
+			result = execve(fullpt, sev->p_input, evp);
+			if (result == -1)
+				perror("Error");
+		}
+		else
+		{
+			wait(&stat);
+			sev->error = WEXITSTATUS(status);
+			if (sev->error)
+				sev->errmsg = NULL;
+		}
 	}
-      else if (pid == 0)
-	{
-	  evp = make_evp_array(sev);
-	  result = execve(fullpt, sev->p_input, evp);
-	  if (result == -1)
-	    perror("Error");
-	}
-      else
-	{
-	  wait(&stat);
-	  sev->error = WEXITSTATUS(status);
-	  if (sev->error)
-	    sev->errmsg = NULL;
-	}
-    }
-  return (0);
+
+	return (0);
 }
