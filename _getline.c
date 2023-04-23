@@ -46,5 +46,6 @@ ssize_t _getline(char **lineptr, size_t *n, int fd, list_t **mt)
 			char_read = 0;
 	}
 	while (char_read)
+		return (count);
 	return (count);
 }

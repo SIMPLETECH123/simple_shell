@@ -1,5 +1,5 @@
-#ifndef
-#define
+#ifndef LOG
+#define LOG
 
 #include "shell.h"
 

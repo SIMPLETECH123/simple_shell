@@ -102,7 +102,7 @@ void var_expan(sev_t *sev)
 		return;
 	for (idx = 0; sev->p_input[idx]; idx++)
 	{
-		if (sev->p_input[idx][0] == '$');
+		if (sev->p_input[idx][0] == '$')
 		{
 			string = sev->p_input[index];
 			if (!_strcmp(sev->p_input[idx], "$$"))

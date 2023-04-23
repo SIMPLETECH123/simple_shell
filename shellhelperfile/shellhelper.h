@@ -1,4 +1,4 @@
-#include "shell.h"
+#include "../shell.h"
 
 /* prototypes for shellhelper01.c file */
 void sig_hand(int signum);

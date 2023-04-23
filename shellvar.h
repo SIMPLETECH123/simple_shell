@@ -1,5 +1,5 @@
-#ifndef
-#define
+#ifndef SHELLVAR
+#define SHELLVAR
 #include "shell.h"
 
 /**
@@ -9,6 +9,7 @@
  * continue with shell
  * @log: ptr to log link list for the
  * current shell session
+ * @ia_mode:input
  * @log_cnt: num of log entries for the
  * curent shell session
  * @cmd_cnt: cmd counter separate from
@@ -53,6 +54,5 @@ typedef struct sev_s
 	list_t *cmd_q;
 	char *shell_d;
 	char *arg0;
-
-	sev_t;
+} sev_t;
 #endif

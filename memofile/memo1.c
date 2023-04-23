@@ -7,7 +7,7 @@
  * @mt: doubl p to memo tracker link list
  * Return: po to new malloc'd space
  */
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size,
+void *_realloc1(void *ptr, unsigned int old_size, unsigned int new_size,
 	       list_t **mt)
 {
 	unsigned int i;
